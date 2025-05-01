@@ -14,7 +14,7 @@ const generateTokens = async (user) => {
     const accessToken = jwt.sign(
         { _id: user._id, email: user.email },
         process.env.JWT_SECRET,
-        { expiresIn: '15m' }
+        { expiresIn: '10s' }
     );
 
     // Generate long-lived refresh token (7 days)
@@ -187,7 +187,7 @@ const refreshAccessToken = async (req, res, next) => {
         const accessToken = jwt.sign(
             { _id: user._id, email: user.email },
             process.env.JWT_SECRET,
-            { expiresIn: '15m' }
+            { expiresIn: '10s' }
         );
 
         res.status(200).json({
