@@ -18,7 +18,7 @@ app.use(helmet({
 
 // CORS configuration for frontend access
 const FRONTEND_URL = process.env.NODE_ENV === 'production'
-  ? 'https://fullstack-task-akshy-1.onrender.com'
+  ? process.env.FRONTEND_URL
   : 'http://localhost:5173';
 app.use(cors({
   origin: FRONTEND_URL, // Frontend origin
