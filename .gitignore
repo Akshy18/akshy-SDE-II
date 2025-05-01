@@ -1,6 +1,6 @@
 server/.env
 node_modules/
-clint/.env
+client/.env
 
 *.log
 
