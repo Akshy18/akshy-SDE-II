@@ -68,8 +68,8 @@ Before running this application, make sure you have the following installed:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/Akshy18/fullstack_task_Akshy.git
-cd fullstack_task_Akshy
+git clone https://github.com/Akshy18/akshy-SDE-II.git
+cd akshy-SDE-II
 ```
 
 ### Environment Variables
