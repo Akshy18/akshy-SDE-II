@@ -113,10 +113,10 @@ const login = async (req, res, next) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             secure: true, // MUST be true in production
-            sameSite: 'none', // Required for cross-site cookies
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-            path: '/api/users', // More specific than '/'
-            domain: 'fullstack-task-akshy.onrender.com' // Your exact Render domain
+            sameSite: 'none', // Required for cross-site in HTTPS
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            path: '/api/users/refresh-token', // Match your refresh endpoint
+            domain: '.onrender.com' // Notice the leading dot for all subdomains
           });
         res.status(200).json({
             success: true,
