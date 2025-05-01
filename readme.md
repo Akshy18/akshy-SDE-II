@@ -1,6 +1,8 @@
 # ✅ Todo List Application - Fullstack Project
 
-A full-featured, responsive Todo List application with user authentication, complete CRUD operations for todos, and secure JWT authentication including token revocation.
+**🔗 Live Demo:** [https://fullstack-task-akshy-1.onrender.com/](https://fullstack-task-akshy-1.onrender.com/)    
+
+A full-featured, responsive Todo List application with user authentication, complete CRUD operations for todos, and secure JWT authentication including token revocation. 
 
 ## 🚀 Features
 
@@ -155,7 +157,13 @@ This application implements a secure authentication flow:
 
 ## 🚀 Deployment
 
-This application is deployed on Render. You can deploy your own instance by following these steps:
+**How to Deploy Your Own Instance**:
+ - Sign up for a Render account.
+ - Connect your GitHub repository.
+ -  Configure environment variables (same as .env setup).
+
+ **Deploy!**
+
 
 ## 🛠️ Future Improvements
 
