@@ -2,6 +2,8 @@
 
 **🔗 Live Demo:** [https://fullstack-task-akshy-1.onrender.com/](https://fullstack-task-akshy-1.onrender.com/)    
 
+A full-featured, responsive Todo List application with user authentication, complete CRUD operations for todos, and secure JWT authentication including token revocation. 
+
 ## ⚠️ Initial Load Notice
 
 ### Due to Render's free tier, the backend sleeps after inactivity. First requests may time out (~10s) while the instance wakes up (takes ~50s).
@@ -12,8 +14,6 @@
 - Subsequent requests will be fast (instance stays awake for ~15 minutes)
 
 **(This only affects the free-tier deployment.)**
-
-A full-featured, responsive Todo List application with user authentication, complete CRUD operations for todos, and secure JWT authentication including token revocation. 
 
 ## 🚀 Features
 
