@@ -116,7 +116,7 @@ const login = async (req, res, next) => {
             sameSite: 'none',   
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             path: '/',
-            domain: process.env.DOMAIN_ENV
+     
         });
 
         res.status(200).json({
