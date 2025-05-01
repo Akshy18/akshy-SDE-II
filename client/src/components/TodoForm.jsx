@@ -6,9 +6,11 @@ import { useDispatch } from "react-redux";
 import { setAccessTokenExpiry } from '../redux/UserSlice';
 import { setErrorModelOpen } from '../redux/loaderAndErrorSlice';
 
+// TodoForm component for creating and editing todo items
 const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
-
     const dispatch = useDispatch();
+    
+    // Form validation schema using Yup
     const validationSchema = yup.object().shape({
         title: yup.string().max(20, 'Title should be less than 20 letters').required("Title is required"),
         description: yup
@@ -24,6 +26,7 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
             }),
     });
 
+    // Initialize formik with form values and validation
     const formik = useFormik({
         initialValues: {
             title: todoData?.title || "",
@@ -60,17 +63,15 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
                 const todosData = response.data.data;
 
                 if (editMode) {
-
                     handleModal(todosData);
                 } else {
                     dispatch(addTodo(todosData));
                     handleModal();
                 }
             } catch (error) {
-
+                // Handle authentication errors
                 dispatch(setAccessTokenExpiry());
                 dispatch(setErrorModelOpen(true));
-
             } finally {
                 setSubmitting(false);
             }
@@ -84,6 +85,7 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
                     {editMode ? "Update Todo" : "Add Todo"}
                 </h1>
                 <form onSubmit={formik.handleSubmit} className="space-y-6">
+                    {/* Title input field */}
                     <div>
                         <label className="block text-sm font-medium mb-2">
                             Title
@@ -105,6 +107,8 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
                             )}
                         </div>
                     </div>
+                    
+                    {/* Status and due date section */}
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between sm:space-x-2 space-y-6 sm:space-y-0">
                         <div>
                             <label className="block text-sm font-medium mb-2">
@@ -147,6 +151,7 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
                         </div>
                     </div>
 
+                    {/* Description textarea */}
                     <div>
                         <label className="block text-sm font-medium mb-2">
                             Description
@@ -154,7 +159,7 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
                         <div className="relative">
                             <textarea
                                 name="description"
-                                className="w-full max-h-[20vh] min-h-[5vh]  pl-3 pr-4 py-3 bg-gray-100 border-b-2 border-b-indigo-600 rounded-lg text-gray-600 focus:outline-none"
+                                className="w-full max-h-[20vh] min-h-[5vh] pl-3 pr-4 py-3 bg-gray-100 border-b-2 border-b-indigo-600 rounded-lg text-gray-600 focus:outline-none"
                                 placeholder="Enter your description"
                                 onChange={formik.handleChange}
                                 onBlur={formik.handleBlur}
@@ -169,6 +174,7 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
                         </div>
                     </div>
 
+                    {/* Form action buttons */}
                     <div className="flex items-center justify-between space-x-2">
                         <button
                             type="submit"
@@ -192,7 +198,7 @@ const TodoForm = ({ handleModal, editMode = false, todoData = null }) => {
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default TodoForm;

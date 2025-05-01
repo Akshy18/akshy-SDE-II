@@ -7,13 +7,14 @@ import { useFormik } from "formik";
 import { FiUser, FiMail, FiLock, FiCheck } from "react-icons/fi";
 import api from "./Api";
 
-
-
+// User registration component with form validation
 const Register = () => {
-
     const navigate = useNavigate();
+    
+    // Password validation regex pattern
     const passwordRules = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/;
 
+    // Form validation schema using Yup
     const validationSchema = yup.object().shape({
         name: yup.string().required("Name is required"),
         email: yup
@@ -34,6 +35,7 @@ const Register = () => {
             .required("Confirm Password is required"),
     });
 
+    // Formik form configuration
     const formik = useFormik({
         initialValues: {
             name: "",
@@ -44,19 +46,19 @@ const Register = () => {
         validationSchema,
         onSubmit: async (values, { setSubmitting }) => {
             try {
-                const response = await api.post(
-                    "/users/register",
-                    {
-                        name: values.name,
-                        email: values.email,
-                        password: values.password
-                    }
-                );
+                // Submit registration data to API
+                const response = await api.post("/users/register", {
+                    name: values.name,
+                    email: values.email,
+                    password: values.password
+                });
+                
+                // Redirect to login on successful registration
                 navigate("/");
             } catch (err) {
-                console.log(err)
+                // Handle registration errors
                 if (err.status === 400) {
-                    formik.setFieldError("email", "user already exist");
+                    formik.setFieldError("email", "User already exists");
                 } else {
                     toast.error(err.response?.data?.error || "Registration failed");
                 }
@@ -68,6 +70,7 @@ const Register = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
+            {/* Toast notification container */}
             <ToastContainer
                 position="bottom-right"
                 autoClose={5000}
@@ -76,16 +79,15 @@ const Register = () => {
                 pauseOnHover
                 theme="dark"
             />
+            
+            {/* Registration form container */}
             <div className="w-full max-w-md bg-gray-200 text-gray-700 rounded-2xl p-8 backdrop-blur-md border-b-8 border-l-4 border-l-indigo-600 border-b-indigo-600 shadow-xl shadow-indigo-500/50">
-                <h1 className="text-3xl font-bold mb-6 text-center">
-                    Register
-                </h1>
+                <h1 className="text-3xl font-bold mb-6 text-center">Register</h1>
 
                 <form onSubmit={formik.handleSubmit} className="space-y-6">
+                    {/* Name input field */}
                     <div>
-                        <label className="block text-sm font-medium mb-2">
-                            Name
-                        </label>
+                        <label className="block text-sm font-medium mb-2">Name</label>
                         <div className="relative">
                             <FiUser className="w-5 h-5 absolute top-3 left-3" />
                             <input
@@ -105,10 +107,9 @@ const Register = () => {
                         </div>
                     </div>
 
+                    {/* Email input field */}
                     <div>
-                        <label className="block text-sm font-medium mb-2">
-                            Email
-                        </label>
+                        <label className="block text-sm font-medium mb-2">Email</label>
                         <div className="relative">
                             <FiMail className="w-5 h-5 absolute top-3 left-3" />
                             <input
@@ -128,10 +129,9 @@ const Register = () => {
                         </div>
                     </div>
 
+                    {/* Password input field */}
                     <div>
-                        <label className="block text-sm font-medium mb-2">
-                            Password
-                        </label>
+                        <label className="block text-sm font-medium mb-2">Password</label>
                         <div className="relative">
                             <FiLock className="w-5 h-5 absolute top-3 left-3" />
                             <input
@@ -143,7 +143,6 @@ const Register = () => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.password}
                             />
-
                             {formik.touched.password && formik.errors.password && (
                                 <p className="text-red-500 text-sm mt-1">
                                     {formik.errors.password}
@@ -152,10 +151,9 @@ const Register = () => {
                         </div>
                     </div>
 
+                    {/* Confirm Password input field */}
                     <div>
-                        <label className="block text-sm font-medium mb-2">
-                            Confirm Password
-                        </label>
+                        <label className="block text-sm font-medium mb-2">Confirm Password</label>
                         <div className="relative">
                             <FiCheck className="w-5 h-5 absolute top-3 left-3" />
                             <input
@@ -167,15 +165,15 @@ const Register = () => {
                                 onBlur={formik.handleBlur}
                                 value={formik.values.confirmPassword}
                             />
-                            {formik.touched.confirmPassword &&
-                                formik.errors.confirmPassword && (
-                                    <p className="text-red-500 text-sm mt-1">
-                                        {formik.errors.confirmPassword}
-                                    </p>
-                                )}
+                            {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {formik.errors.confirmPassword}
+                                </p>
+                            )}
                         </div>
                     </div>
 
+                    {/* Submit button */}
                     <button
                         type="submit"
                         disabled={formik.isSubmitting}
@@ -185,6 +183,7 @@ const Register = () => {
                     </button>
                 </form>
 
+                {/* Login link */}
                 <p className="mt-6 text-center">
                     Already have an account?
                     <Link
@@ -193,7 +192,6 @@ const Register = () => {
                     >
                         Login here
                     </Link>
-
                 </p>
             </div>
         </div>

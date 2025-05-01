@@ -14,7 +14,7 @@ const generateTokens = async (user) => {
     const accessToken = jwt.sign(
         { _id: user._id, email: user.email },
         process.env.JWT_SECRET,
-        { expiresIn: '10s' }
+        { expiresIn: '15m' }
     );
 
     // Generate long-lived refresh token (7 days)
@@ -115,7 +115,7 @@ const login = async (req, res, next) => {
             secure: true, // MUST be true in production
             sameSite: 'none', // Required for cross-site in HTTPS
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-            path: '/', // Match your refresh endpoint
+            path: '/', // For all endpoint
 
           });
         res.status(200).json({
@@ -158,8 +158,7 @@ const protected = async (req, res, next) => {
  */
 const refreshAccessToken = async (req, res, next) => {
     try {
-        console.log('Cookie Header:', req.headers.cookie);
-        console.log('Parsed Cookies:', req.cookies);
+
         // Get refresh token from cookie
         const refreshToken = req.cookies.refreshToken;
         if (!refreshToken) {
@@ -188,7 +187,7 @@ const refreshAccessToken = async (req, res, next) => {
         const accessToken = jwt.sign(
             { _id: user._id, email: user.email },
             process.env.JWT_SECRET,
-            { expiresIn: '10s' }
+            { expiresIn: '15m' }
         );
 
         res.status(200).json({

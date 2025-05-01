@@ -4,14 +4,12 @@ import TodoSlice from "./TodoSlice";
 import LoaderAndError from "./loaderAndErrorSlice";
 
 const store = configureStore({
-
     reducer: {
         User: UserSlice,
         Todo: TodoSlice,
         loaderAndError: LoaderAndError
     },
-    devTools:false
+    devTools: false  // Disable Redux DevTools in production
+});
 
-})
-
-export default store; 
+export default store;
