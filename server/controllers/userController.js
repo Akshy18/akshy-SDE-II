@@ -112,7 +112,7 @@ const login = async (req, res, next) => {
         // Set refresh token as HTTP-only cookie
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,    // Prevent XSS attacks
-            secure: true,      // HTTPS only (Render provides HTTPS)
+            secure: false,      // HTTPS only (Render provides HTTPS)
             sameSite: 'none',   
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             path: '/',
