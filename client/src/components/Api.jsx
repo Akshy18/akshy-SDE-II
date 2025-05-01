@@ -16,7 +16,7 @@ const api = axios.create({
 export const refreshAccessToken = async () => {
 
   try {
-    const response = await api.post("/users/refresh-token", {
+    const response = await api.post("/users/refresh-token",{},{
       withCredentials: true
     });
     const { accessToken } = response.data;
