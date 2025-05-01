@@ -8,7 +8,7 @@ const userRouter = require('./routes/userRoutes');
 const todoRouter = require('./routes/todoRoutes');
 
 const app = express();
-
+app.set('trust proxy', 1);
 // Security and parsing middlewares
 app.use(cookieParser());
 app.use(helmet({

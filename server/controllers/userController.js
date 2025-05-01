@@ -158,6 +158,8 @@ const protected = async (req, res, next) => {
  */
 const refreshAccessToken = async (req, res, next) => {
     try {
+        console.log('Cookie Header:', req.headers.cookie);
+        console.log('Parsed Cookies:', req.cookies);
         // Get refresh token from cookie
         const refreshToken = req.cookies.refreshToken;
         if (!refreshToken) {
