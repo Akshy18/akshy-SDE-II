@@ -7,7 +7,6 @@ const createTodo = async (req, res, next) => {
   try {
 
     const { title, description, status, dueDate } = req.body;
-     console.log(req.body)
     // Create the todo item with owner being the logged in user
     const todo = new TodoModel({
       title,
@@ -123,7 +122,7 @@ const updateTodo = async (req, res, next) => {
 const deleteTodo = async (req, res, next) => {
   try {
     const todoId = req.params.id;
-    console.log(todoId , 'tpdppppppp')
+
     // Validate if id is a valid ObjectId
     if (!mongoose.Types.ObjectId.isValid(todoId)) {
       return next(new ErrorResponse('Invalid todo ID', 400));

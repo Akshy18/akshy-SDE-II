@@ -17,7 +17,6 @@ todoRouter.put('/:id', updateTodo);
 
 todoRouter.delete('/:id', deleteTodo);
 
-// Filter todos by status
-//todoRouter.get('/filter/status/:status', todoController.getTodosByStatus);
+
 
 module.exports = todoRouter;
