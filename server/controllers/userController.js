@@ -111,14 +111,13 @@ const login = async (req, res, next) => {
 
         // Set refresh token as HTTP-only cookie
         res.cookie('refreshToken', refreshToken, {
-            httpOnly: true,    // Prevent XSS attacks
-            secure: false,      // HTTPS only (Render provides HTTPS)
-            sameSite: 'none',   
-            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-            path: '/',
-     
-        });
-
+            httpOnly: true,
+            secure: true, // MUST be true in production
+            sameSite: 'none', // Required for cross-site cookies
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+            path: '/api/users', // More specific than '/'
+            domain: 'fullstack-task-akshy.onrender.com' // Your exact Render domain
+          });
         res.status(200).json({
             success: true,
             message: 'Logged in successfully',

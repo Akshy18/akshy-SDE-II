@@ -2,15 +2,15 @@
 import axios from 'axios';
 // Create base axios instance with increased timeout
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL ,
+  baseURL: "http://localhost:5000/api" ,
   withCredentials: true,
   headers: {
     'Content-Type': 'application/json'
   },
   timeout: 10000  // Increased timeout to 10 seconds
 });
-
-
+// import.meta.env.VITE_API_BASE_URL
+// "http://localhost:5000/api"
 
 // Simple token refresh function
 export const refreshAccessToken = async () => {
