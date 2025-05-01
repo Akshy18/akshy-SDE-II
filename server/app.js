@@ -21,10 +21,11 @@ const FRONTEND_URL = process.env.NODE_ENV === 'production'
   ? 'https://fullstack-task-akshy-1.onrender.com/'
   : 'http://localhost:5173';
 app.use(cors({
-  origin: FRONTEND_URL, // Frontend origin
+  origin: 'https://fullstack-task-akshy-1.onrender.com/', // Frontend origin
   credentials: true, // Allow credentials/cookies
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allowed methods
-  allowedHeaders: ['Content-Type', 'Authorization'] // Allowed headers
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],// Allowed headers
+  exposedHeaders: ['Authorization']
 }));
 
 // Request body parsing
