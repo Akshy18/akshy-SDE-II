@@ -1,22 +1,23 @@
 const express = require('express');
-const {createTodo,getAllTodos,getTodoById,updateTodo,deleteTodo} = require('../controllers/todoController');
+const {
+  createTodo,
+  getAllTodos,
+  getTodoById,
+  updateTodo,
+  deleteTodo
+} = require('../controllers/todoController');
 const authMiddleware = require('../middlewares/authMiddleware');
 
 const todoRouter = express.Router();
 
-// Apply auth middleware to all todo routes
+// Protect all todo routes with authentication
 todoRouter.use(authMiddleware);
 
-// CRUD operations
-todoRouter.post('/', createTodo);
-
-todoRouter.get('/', getAllTodos);
-todoRouter.get('/:id', getTodoById);
-
-todoRouter.put('/:id', updateTodo);
-
-todoRouter.delete('/:id', deleteTodo);
-
-
+// Todo CRUD endpoints
+todoRouter.post('/', createTodo); // Create new todo
+todoRouter.get('/', getAllTodos); // Get all todos for user
+todoRouter.get('/:id', getTodoById); // Get single todo by ID
+todoRouter.put('/:id', updateTodo); // Update todo by ID
+todoRouter.delete('/:id', deleteTodo); // Delete todo by ID
 
 module.exports = todoRouter;

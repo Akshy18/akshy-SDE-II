@@ -13,6 +13,7 @@ const TodoSlice = createSlice({
     initialState,
     reducers: {
         setTodo: (state, action) => {
+        
             const todos = action.payload;
             const newTodos = todos.map((todo) => {
                 return {

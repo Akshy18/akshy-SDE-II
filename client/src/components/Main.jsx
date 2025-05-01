@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setToken, setUser, clearToken } from "../redux/UserSlice";
+import { setToken, setUser, clearToken, clearUser } from "../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import api, { addAuthHeader, refreshAccessToken } from "./Api";
 import TodoComponent from "./TodoComponent";
@@ -96,6 +96,8 @@ const Main = () => {
       if (response.status === 200) {
         localStorage.removeItem("accessToken");
         dispatch(clearToken());
+        dispatch(setTodo([]))
+        dispatch(clearUser())
         navigate("/");
       }
     } catch (error) {
