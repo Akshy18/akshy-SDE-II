@@ -113,7 +113,7 @@ const login = async (req, res, next) => {
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,    // Prevent XSS attacks
             secure: true,      // HTTPS only (Render provides HTTPS)
-            sameSite: 'lax',   // CSRF protection
+            sameSite: 'none',   
             maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             path: '/',
             domain: process.env.DOMAIN_ENV
