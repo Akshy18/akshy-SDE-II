@@ -36,8 +36,13 @@ const TodoSlice = createSlice({
         },
         // Toggle accordion state for specific todo
         setIsAccordianOpen: (state, action) => {
-            const idx = action.payload;
-            state.allTodos[idx].isAccordianOpen = !state.allTodos[idx].isAccordianOpen;
+            const id = action.payload;
+            state.allTodos.map((item) => {
+                if(item._id === id){
+                    item.isAccordianOpen = !item.isAccordianOpen
+                    return
+                }
+            } )
         },
         // Set current todo data for editing
         setEditData: (state, action) => {

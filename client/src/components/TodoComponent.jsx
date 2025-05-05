@@ -51,8 +51,8 @@ const TodoComponent = () => {
     };
 
     // Toggle accordion for todo details
-    const handleAccordianOpen = (idx) => {
-        dispatch(setIsAccordianOpen(idx));
+    const handleAccordianOpen = (id) => {
+        dispatch(setIsAccordianOpen(id));
     };
 
     // Set todo item for editing
@@ -173,7 +173,7 @@ const TodoComponent = () => {
                                                 </div>
 
                                                 <button
-                                                    onClick={() => handleAccordianOpen(index)}
+                                                    onClick={() => handleAccordianOpen(item._id)}
                                                     className="ml-3 transition-transform duration-300 transform"
                                                     aria-label={item.isAccordianOpen ? "Collapse" : "Expand"}
                                                 >
